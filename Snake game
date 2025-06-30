@@ -7,4 +7,14 @@ const GRID_SIZE=15;
 const INICIAL_SNAKE=[{x:7, y:7};
 const INICIAL_DIRECTION={x:0, y:-1};
 export default function Snakegame (){}
-const [snake, setSnake,] 
+const [snake, setSnake,] = useState(INICIAL_SNAKE);
+const [direcion, setDirecion]= useState (INCIAL_DIRECION);
+const [isGameOver, set isGameOver] = useState (false);
+const moveInterval = useRef(NULL);
+function moveSnake(){
+setSnake (prev =>{
+  x: prev[0]. x +direction.x,
+  y: prev [0]. y + direction.y,
+};
+if(
+  newhead.x <0 
