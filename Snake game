@@ -16,5 +16,26 @@ setSnake (prev =>{
   x: prev[0]. x +direction.x,
   y: prev [0]. y + direction.y,
 };
-if(
-  newhead.x <0 
+
+
+
+ if (head.x < 0 || head.x >= GRID_SIZE || head.y < 0 || head.y >= GRID_SIZE || newSnake.some(segment => segment.x === head.x && segment.y === head.y)) {
+                setIsGameOver(true);
+                clearInterval(moveInterval.current);
+                Alert.alert("Fim de Jogo Meu Patrao", "Você Bateu na parede ou se mordeu!");
+                return prev;
+            }
+
+            newSnake.unshift(head);
+            newSnake.pop();
+            return newSnake;
+        });
+
+
+    }
+};
+ cosnt newSnake = [newHead, ...prev];
+
+newSnake.pop(); 
+
+return newSnake;
