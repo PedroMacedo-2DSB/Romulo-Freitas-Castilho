@@ -1,32 +1,39 @@
-import react, {useState, useEfect, useRef} from ´react`;
-import {View, Text, StyleSheet, TouchableOpacity, Alert} from ´react-native`
+import React, { useState, useEffect, useRef } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+//
 
-const CELL_SIZE=20;
-const GRID_SIZE=15;
+const CELL_SIZE = 20;
+const GRID_SIZE = 15;
 
-const INICIAL_SNAKE=[{x:7, y:7};
-const INICIAL_DIRECTION={x:0, y:-1};
-export default function Snakegame (){}
-const [snake, setSnake,] = useState(INICIAL_SNAKE);
-const [direcion, setDirecion]= useState (INCIAL_DIRECION);
-const [isGameOver, set isGameOver] = useState (false);
-const moveInterval = useRef(NULL);
-function moveSnake(){
-setSnake (prev =>{
-  x: prev[0]. x +direction.x,
-  y: prev [0]. y + direction.y,
-};
+// posição inicial
+const INITIAL_SNAKE = [{ x: 7, y: 7 }];
 
+const INITIAL_DIRECTION = { x: 0, y: -1 };
 
+export default function SnakeGame() {
 
- if (head.x < 0 || head.x >= GRID_SIZE || head.y < 0 || head.y >= GRID_SIZE || newSnake.some(segment => segment.x === head.x && segment.y === head.y)) {
+    const [snake, SetSnake] = useState(INITIAL_SNAKE);
+
+    const [direction, SetDirection] = useState(INITIAL_DIRECTION);
+    const [isGameOver, setIsGameOver] = useState(false);
+    const moveInterval = useRef(null);
+    function moveSnake() {
+        setSnake(prev => {
+            const newHead = {
+
+                x: prev[0].x + direction.x,
+                y: prev[0].y + direction.y
+            };
+
+            
+            if (head.x < 0 || head.x >= GRID_SIZE || head.y < 0 || head.y >= GRID_SIZE || newSnake.some(segment => segment.x === head.x && segment.y === head.y)) {
                 setIsGameOver(true);
                 clearInterval(moveInterval.current);
                 Alert.alert("Fim de Jogo Meu Patrao", "Você Bateu na parede ou se mordeu!");
                 return prev;
             }
 
-            newSnake.unshift(head);
+            newSnake.unshift(head); 
             newSnake.pop();
             return newSnake;
         });
@@ -34,8 +41,3 @@ setSnake (prev =>{
 
     }
 };
- cosnt newSnake = [newHead, ...prev];
-
-newSnake.pop(); 
-
-return newSnake;
